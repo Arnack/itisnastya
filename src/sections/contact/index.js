@@ -40,9 +40,9 @@ class Contact extends React.Component {
             Username : "info@itisnastya.art",
             Password : "rarjqnjgfhjkm",
             To : 'info@itisnastya.art',
-            From : this.state.name,
+            From : 'info@itisnastya.art',
             Subject : "from website",
-            Body : this.state.message + this.state.phone + this.state.email,
+            Body : this.state.name + this.state.message + this.state.phone + this.state.email,
             }).then(
                 message => {
                     console.log("mail sent successfully");
