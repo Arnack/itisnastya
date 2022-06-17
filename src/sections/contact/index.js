@@ -4,6 +4,7 @@ import { Row, Col } from 'react-bootstrap'
 import AnimationContainer from 'components/animation-container'
 import BaffleText from 'components/baffle-text'
 import ThemeContext from '../../context'
+import toast from 'react-hot-toast';
 
 class Contact extends React.Component {
     constructor(props) {
@@ -36,17 +37,17 @@ class Contact extends React.Component {
     submit() {
         const sendEmail = () => {
             window.Email.send({
-            Host: "smtp.mail.ru",
-            Username : "info@itisnastya.art",
-            Password : "rarjqnjgfhjkm",
+            SecureToken: "f096f0a5-3df8-4b2a-931d-37010b1aae16",
             To : 'info@itisnastya.art',
             From : 'info@itisnastya.art',
-            Subject : "from website",
-            Body : this.state.name + this.state.message + this.state.phone + this.state.email,
+            Subject : `Message from  ${this.state.name} via contact form`,
+            Body : `Name: ${this.state.name} <br/>
+             Email: ${this.state.email}  <br/> 
+             Phone: ${this.state.phone} <br/>
+             Message: ${this.state.message}`
             }).then(
                 message => {
-                    console.log("mail sent successfully");
-                    this.setState({message: "", name: "", email: "", phone: "", error: false});
+                    toast.success('Your message has been sent successfully!');
                 }
             ).catch(err => console.error(err));
         }
@@ -63,6 +64,7 @@ class Contact extends React.Component {
     render() {
         return (
             <section id={`${this.props.id}`} className="contact" style={{height: this.context.height}}>
+                
                 <Row>
                     <Col md={2} className="side">
                         <h2>

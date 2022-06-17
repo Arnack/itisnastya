@@ -9,6 +9,7 @@ import Portfolio from 'sections/portfolio'
 import Services from 'sections/services'
 import Testimonials from 'sections/testimonials'
 import Contact from 'sections/contact'
+import { Toaster } from 'react-hot-toast'
 
 class HomePage extends React.Component {
 
@@ -27,6 +28,8 @@ class HomePage extends React.Component {
             <Portfolio id="portfolio" />
             <Testimonials id="testimonials" />
             <Contact id="contact" />
+            
+        <Toaster />
         </Layout>
         <Spinner duration={1000} />
       </div>

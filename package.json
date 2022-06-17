@@ -36,6 +36,7 @@
     "react-countup": "^4.3.3",
     "react-date-picker": "^7.10.0",
     "react-dom": "^16.13.0",
+    "react-hot-toast": "^2.2.0",
     "react-in-viewport": "^1.0.0-alpha.11",
     "react-particles-js": "^2.7.1",
     "react-scrolllock": "^5.0.1",
