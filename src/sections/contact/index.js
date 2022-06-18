@@ -5,6 +5,7 @@ import AnimationContainer from 'components/animation-container'
 import BaffleText from 'components/baffle-text'
 import ThemeContext from '../../context'
 import toast from 'react-hot-toast';
+import { graphql, StaticQuery, useStaticQuery } from 'gatsby'
 
 class Contact extends React.Component {
     constructor(props) {
@@ -34,11 +35,11 @@ class Contact extends React.Component {
         }
     }
 
-    submit() {
+    submit(email) {
         const sendEmail = () => {
             window.Email.send({
             SecureToken: "f096f0a5-3df8-4b2a-931d-37010b1aae16",
-            To : 'info@itisnastya.art',
+            To : email,
             From : 'info@itisnastya.art',
             Subject : `Message from  ${this.state.name} via contact form`,
             Body : `Name: ${this.state.name} <br/>
@@ -62,6 +63,7 @@ class Contact extends React.Component {
 
 
     render() {
+        const {buttonText, email, formTitle, location} = this.props.contentfulContactSection;
         return (
             <section id={`${this.props.id}`} className="contact" style={{height: this.context.height}}>
                 
@@ -72,23 +74,23 @@ class Contact extends React.Component {
                         </h2>
                     </Col>
                     <Col md={5} className="form">
-                        {this.form()}
+                        {this.form(formTitle, email, buttonText)}
                     </Col>
                     <Col md={5} className="map">
-                        {this.map()}
+                        {this.map(location)}
                     </Col>
                 </Row>
             </section>
         )
     }
 
-    form() {
+    form(title, email, buttonText) {
         if (this.state.show || this.context.height === "auto") {
             return (
                 <AnimationContainer delay={0} animation="fadeInUp fast">
                 <div className="form-container">
                     <div className="line-text">
-                        <h4>Get In Touch</h4>
+                        <h4>{title}</h4>
                         <AnimationContainer delay={50} animation="fadeInUp fast">
                             <div className="form-group">
                                 <input type="text" className={`name ${this.check(this.state.name) ? "" : "error"}`} placeholder="Name" onChange={e => this.setState({name: e.target.value})} />
@@ -111,8 +113,8 @@ class Contact extends React.Component {
                         </AnimationContainer>
                         <AnimationContainer delay={250} animation="fadeInUp fast">
                         <div className="submit">
-                            <button className={`hover-button ${this.state.error ? "error" : ""}`} onClick={() => this.submit()}>
-                                <span>Send Message</span>
+                            <button className={`hover-button ${this.state.error ? "error" : ""}`} onClick={() => this.submit(email)}>
+                                <span>{buttonText}</span>
                             </button>
                         </div>
                         </AnimationContainer>
@@ -123,12 +125,36 @@ class Contact extends React.Component {
         }
     }
 
-    map() {
+    map(location) {
         if (this.state.show || this.context.height === "auto") {
             return (
                 <AnimationContainer delay={1000} animation="fadeIn fast" height={this.context.height}>
-                    {/* <iframe title="map" width="100%" height="100%" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street%2C%20Dublin%2C%20Ireland+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"/> */}
-                    <iframe title="map" width="100%" height="100%" frameBorder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Aqaba+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" />
+                    {/* <iframe title="map"
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
+                    scrolling="no"
+                    marginHeight="0"
+                    marginWidth="0"
+                    src={"https://maps.google.com/maps?width=100%&height=600&hl=en&" +
+                    "&q=Eiffel+Tower,Paris+France" +
+                    "center=" + location.lat + "," + location.lon +
+                    "&z=14&output=embed"} 
+                    /> */}
+
+
+
+                    <iframe
+                    title='map'
+                    width="100%"
+                    height="100%"
+                    frameborder="0"
+                    scrolling="no"
+                    marginHeight="0"
+                    marginWidth="0"
+                    src={`https://www.openstreetmap.org/export/embed.html?bbox=34.97315168380738%2C29.537413848243954%2C34.99117612838746%2C29.5494732406084&amp;layer=cyclemap&amp;marker=${location.lat},${location.lon}`} />
+
+
                 </AnimationContainer>
             )
         }
@@ -136,4 +162,24 @@ class Contact extends React.Component {
 
 }
 
-export default Contact
+// export default Contact
+
+export default props => (
+    <StaticQuery
+        query={graphql`
+        query {
+            contentfulContactSection {
+                buttonText
+                email
+                formTitle
+                location {
+                    lat
+                    lon
+                  }
+              }
+        }`}
+            render={data => <Contact {...data} {...props} />}
+            />
+)
+
+

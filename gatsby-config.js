@@ -1,3 +1,6 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 module.exports = {
   siteMetadata: {
     title: 'Anastasiya Antonova. IT Recruiter',
@@ -11,6 +14,22 @@ module.exports = {
       options: {
         path: `${__dirname}/content/images/`,
         name: 'images',
+      },
+    },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        url: `${process.env.GATSBY_API_URL}/${process.env.GATSBY_SPACE_ID}`,
+        headers: {
+          Authorization: `Bearer ${process.env.GATSBY_API_TOCKEN}`,
+        },
+      },
+    },
+    {
+      resolve: "gatsby-source-contentful",
+      options: {
+        spaceId: process.env.GATSBY_SPACE_ID,
+        accessToken: process.env.GATSBY_API_TOCKEN
       },
     },
     {

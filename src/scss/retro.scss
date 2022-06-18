@@ -45,7 +45,7 @@ img {
     height: 3px;
     width: 90px;
     display: block;
-    background-color: #eb83f8;
+    background-color: #fa949d;//ex eb83f8
     position: absolute;
     top: 0;
     left: -108px;
@@ -83,7 +83,7 @@ img {
   height: 3px;
   width: 90px;
   display: block;
-  background-color: #eb83f8;
+  background-color: #fa949d;
 }
 .row {
   overflow-x: hidden;
@@ -100,7 +100,7 @@ img {
     font-weight: 900;
   }
   a {
-    color: #eb83f8;
+    color: #fa949d;
     &:hover {
       text-decoration: none;
     }
@@ -146,7 +146,7 @@ img {
       &:after {
           bottom: -2px;
           right: -2px;
-          background: #eb83f8;
+          background: #fa949d;
       }
   }
   &:before,
@@ -161,7 +161,7 @@ img {
   &:before {
       top: -2px;
       left: -2px;
-      background: #eb83f8;
+      background: #fa949d;
   }
   &:after {
       top: -2px;

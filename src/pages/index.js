@@ -15,11 +15,12 @@ class HomePage extends React.Component {
 
   render() {
     const { site } = this.props.data
+    const { siteTitle, description } = this.props.data?.contentfulMetadata
     return (
       <div>
         <Helmet>
-          <title>{site.meta.title}</title>
-          <meta name="description" content={site.meta.description} />
+          <title>{siteTitle || site.meta.title}</title>
+          <meta name="description" content={description || site.meta.description} />
         </Helmet>
         <Layout>
             <Hero id="home" />
@@ -46,6 +47,10 @@ export const pageQuery = graphql`
         title
         description
       }
+    }
+    contentfulMetadata {
+      siteTitle
+      description
     }
   }
 `

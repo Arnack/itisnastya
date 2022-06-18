@@ -34,12 +34,12 @@
             animation: 2s fancy infinite alternate;
             
             &:nth-child(1) {
-            border-left-color: #eb83f8;
-            border-right-color: #eb83f8;
+            border-left-color: #fa949d;
+            border-right-color: #fa949d;
             }
             &:nth-child(2) {
-            border-top-color: #eb83f8;
-            border-bottom-color: #eb83f8;
+            border-top-color: #fa949d;
+            border-bottom-color: #fa949d;
             animation-delay: 1s;
             }
         }
@@ -47,7 +47,7 @@
         &.dot {
                 width: 1rem;
                 height: 1rem;
-                background: #eb83f8;
+                background: #fa949d;
             }
         }
     }

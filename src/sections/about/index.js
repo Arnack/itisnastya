@@ -3,15 +3,19 @@ import Particles from 'react-particles-js';
 import Progress from 'components/progress'
 import { Row, Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import ThemeContext from '../../context'
 import './styles.scss'
+import { graphql, StaticQuery } from 'gatsby';
 
 class Hero extends React.Component {
 
     static contextType = ThemeContext
 
     render() {
+        console.log("nnlknlnlnlk------", this.props);
+        const { tile, description, sectionName } = this.props.contentfulAboutMe;
+        const { linkedin, facebook, instagram, twitter } = this.props.contentfulSocialMedias;
         return (
             <section id={`${this.props.id}`} className="about" style={{height: this.context.height}}>
                 {this.particles()}
@@ -19,26 +23,35 @@ class Hero extends React.Component {
                     <Col md={6} className="content">
                         <div className="content-text">
                             <div className="line-text">
-                                <h4>About Me</h4>
+                                <h4>{sectionName}</h4>
                             </div>
-                            <h3>I help Tech companies scale their Product Teams</h3>
+                            <h3>{tile}</h3>
                             <div className="separator" />
                             <p>
-                            Helping EMs & CTOs build strong high-performance Cross-Functional Engineering teams.
-                            I supply Software Engineers of all levels with opportunities from Global tech businesses, 
-                            relocate, on-site or remote!
+                            {description.description}
                             </p>
                             <div className="social social_icons">
-                                <FontAwesomeIcon icon={faInstagram} className="social_icon" onClick={() => window.open('https://www.instagram.com/antonova_n/')}/>
-                                {/* <FontAwesomeIcon icon={faTwitter} className="social_icon" onClick={() => window.open('https://www.twitter.com')} /> */}
-                                {/* <FontAwesomeIcon icon={faYoutube} className="social_icon" onClick={() => window.open('https://www.youtube.com')} /> */}
-                                <FontAwesomeIcon icon={faLinkedin} className="social_icon" onClick={() => window.open('https://www.linkedin.com/in/anastasiya-antonova-08153a137/')} />
+                                {instagram && <FontAwesomeIcon icon={faInstagram}
+                                className="social_icon"
+                                onClick={() => window.open(instagram)}/>}
+                                
+                                {facebook && <FontAwesomeIcon icon={faFacebook}
+                                className="social_icon"
+                                onClick={() => window.open(facebook)}/>}
+                                
+                                {twitter && <FontAwesomeIcon icon={faTwitter}
+                                className="social_icon"
+                                onClick={() => window.open(twitter)}/>}
+                                
+                                {linkedin && <FontAwesomeIcon icon={faLinkedin}
+                                className="social_icon"
+                                onClick={() => window.open(linkedin)}/>}
                             </div>
                         </div>
                     </Col>
                     <Col md={6} className="skills">
                             <div className="line-text">
-                                <h4>How It Works?</h4>
+                                <h4>How does it Work?</h4>
                             </div>
                             <div className="skills-container">
                                 <Progress name="Profiling" value={20} delay={1000} />
@@ -81,4 +94,28 @@ class Hero extends React.Component {
 
 }
 
-export default Hero
+// export default Hero
+
+export default props => (
+    <StaticQuery
+        query={graphql`
+        query {
+            contentfulAboutMe {
+                tile
+                description {
+                  id
+                  description
+                }
+                sectionName
+              }
+              contentfulSocialMedias {
+                linkedin
+                facebook
+                instagram
+              }
+        }
+      `}
+        render={data => <Hero {...data} {...props} />}
+        />
+
+)
