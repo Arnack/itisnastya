@@ -53,11 +53,11 @@ class Hero extends React.Component {
                                 <h4>How does it Work?</h4>
                             </div>
                             <div className="skills-container">
-                                <Progress name="Profiling" value={20} delay={1000} />
-                                <Progress name="Sourcing" value={40} delay={1500} />
-                                <Progress name="Interviewing" value={60} delay={2000} />
-                                <Progress name="Offer Extension and Negotiation" value={80} delay={2500} />
-                                <Progress name="Onboarding" value={100} delay={3000} />
+                                <Progress name="1. Profiling" value={20} delay={1000} />
+                                <Progress name="2. Sourcing" value={40} delay={1500} />
+                                <Progress name="3. Interviewing" value={60} delay={2000} />
+                                <Progress name="4. Offer Extension and Negotiation" value={80} delay={2500} />
+                                <Progress name="5. Onboarding" value={100} delay={3000} />
                             </div>
                     </Col>
                 </Row>

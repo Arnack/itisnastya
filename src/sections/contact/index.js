@@ -79,8 +79,9 @@ class Contact extends React.Component {
                     </Col>
                     <Col md={5} className="contact-me">
                         {/* {this.map(location)} */}
-                        
-                        <ContactMe />
+                        <AnimationContainer delay={0} animation="fadeInUp fast">
+                            <ContactMe />
+                        </AnimationContainer>
                     </Col>
                 </Row>
             </section>
@@ -132,9 +133,6 @@ class Contact extends React.Component {
         if (this.state.show || this.context.height === "auto") {
             return (
                 <AnimationContainer delay={1000} animation="fadeIn fast" height={this.context.height}>
-                  
-
-                <ContactMe />
 
                     {/* <iframe
                     title='map'
