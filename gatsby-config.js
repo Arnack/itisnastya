@@ -17,15 +17,6 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-graphql",
-      options: {
-        url: `${process.env.GATSBY_API_URL}/${process.env.GATSBY_SPACE_ID}`,
-        headers: {
-          Authorization: `Bearer ${process.env.GATSBY_API_TOCKEN}`,
-        },
-      },
-    },
-    {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId: process.env.GATSBY_SPACE_ID,
