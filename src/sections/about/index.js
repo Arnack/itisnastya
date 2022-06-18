@@ -13,7 +13,6 @@ class Hero extends React.Component {
     static contextType = ThemeContext
 
     render() {
-        console.log("nnlknlnlnlk------", this.props);
         const { tile, description, sectionName } = this.props.contentfulAboutMe;
         const { linkedin, facebook, instagram, twitter } = this.props.contentfulSocialMedias;
         return (

@@ -88,3 +88,120 @@
         margin-top: 40px;
     }
 }
+
+.contact-me {
+    background-color: #251170;
+    // background-color: #232946;
+
+    // background-image: url(./2circles.svg);
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5%;
+
+    @media (max-width: 767px) {
+        padding: 30px 50px 50px 50px;
+    }
+
+    h4 {
+        font-size: 30px;
+        font-weight: 700;
+        color: #fffffe;
+        margin-bottom: 20px;
+    }
+
+    p.subtitle {
+        color: #b8c1ec;
+    }
+
+
+    .social_icons {
+        margin-top: 48px;
+        margin-left: -4px;
+
+        .social_icon_wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            line-height: 40px;
+            text-align: center;
+            transition: .2s;
+            float: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                background-color: #fa949d;
+            }
+
+            .social_icon {
+                cursor: pointer;
+                color: #fff;
+                font-size: 20px;
+            }
+
+        }
+        
+    }
+
+    .contactInfo {
+        .contactInfo__item {
+            line-height: 48px;
+            color: #b8c1ec;
+
+            .contact-icon {
+                font-size: 24px;
+                color: #fa949d;
+                margin-bottom: -3px;
+            }
+
+            .contact-label {
+                margin-left: 20px;
+            }
+
+            .contact-telegram {
+                cursor: pointer;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .two-circles {
+        .big-circle {
+            width: 30vw;
+            height: 30vw;
+            border-radius: 50%;
+            background-color: #fa949d;
+            position: absolute;
+            bottom: -15vw;
+            right: -15vw;
+
+            @media (max-width: 767px) {
+                width: 60vw;
+                height: 60vw;
+                bottom: -30vw;
+                right: -30vw;
+            }
+        }
+        .small-circle {
+            width: 12vw;
+            height: 12vw;
+            border-radius: 50%;
+            background-color: #7d53fad6;
+            position: absolute;
+            bottom: 6vw;
+            right: 6vw;
+
+            @media (max-width: 767px) {
+                width: 30vw;
+                height: 30vw;
+                bottom: 10vw;
+                right: 10vw;
+            }
+        }
+    }
+}

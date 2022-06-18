@@ -5,7 +5,8 @@ import AnimationContainer from 'components/animation-container'
 import BaffleText from 'components/baffle-text'
 import ThemeContext from '../../context'
 import toast from 'react-hot-toast';
-import { graphql, StaticQuery, useStaticQuery } from 'gatsby'
+import { graphql, StaticQuery } from 'gatsby'
+import ContactMe from './contactMe'
 
 class Contact extends React.Component {
     constructor(props) {
@@ -76,8 +77,10 @@ class Contact extends React.Component {
                     <Col md={5} className="form">
                         {this.form(formTitle, email, buttonText)}
                     </Col>
-                    <Col md={5} className="map">
-                        {this.map(location)}
+                    <Col md={5} className="contact-me">
+                        {/* {this.map(location)} */}
+                        
+                        <ContactMe />
                     </Col>
                 </Row>
             </section>
@@ -129,22 +132,11 @@ class Contact extends React.Component {
         if (this.state.show || this.context.height === "auto") {
             return (
                 <AnimationContainer delay={1000} animation="fadeIn fast" height={this.context.height}>
-                    {/* <iframe title="map"
-                    width="100%"
-                    height="100%"
-                    frameBorder="0"
-                    scrolling="no"
-                    marginHeight="0"
-                    marginWidth="0"
-                    src={"https://maps.google.com/maps?width=100%&height=600&hl=en&" +
-                    "&q=Eiffel+Tower,Paris+France" +
-                    "center=" + location.lat + "," + location.lon +
-                    "&z=14&output=embed"} 
-                    /> */}
+                  
 
+                <ContactMe />
 
-
-                    <iframe
+                    {/* <iframe
                     title='map'
                     width="100%"
                     height="100%"
@@ -152,7 +144,7 @@ class Contact extends React.Component {
                     scrolling="no"
                     marginHeight="0"
                     marginWidth="0"
-                    src={`https://www.openstreetmap.org/export/embed.html?bbox=34.97315168380738%2C29.537413848243954%2C34.99117612838746%2C29.5494732406084&amp;layer=cyclemap&amp;marker=${location.lat},${location.lon}`} />
+                    src={`https://www.openstreetmap.org/export/embed.html?bbox=34.97315168380738%2C29.537413848243954%2C34.99117612838746%2C29.5494732406084&amp;layer=cyclemap&amp;marker=${location.lat},${location.lon}`} /> */}
 
 
                 </AnimationContainer>
