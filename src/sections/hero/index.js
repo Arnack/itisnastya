@@ -10,6 +10,20 @@ class Hero extends React.Component {
   static contextType = ThemeContext
 
   render() {
+
+    const personImg = this.props.contentfulHomeImage?.photo?.file?.url;
+
+    const introText = this.props.contentfulHomeInfo?.introText || "Hello, I'm";
+    const name = this.props.contentfulHomeInfo?.name || "Nastya A.";
+    const positions = this.props.contentfulHomeInfo?.positions ||
+      [
+        'IT Recruiter',
+        'Photorapher',
+        'UI/UX Designer',
+      ];
+      
+    const cvURL = this.props.contentfulAsset?.file?.url;
+
     return (
       <section
         id={`${this.props.id}`}
@@ -20,29 +34,29 @@ class Hero extends React.Component {
           <Col md={6} className="content">
             <div className="content-text">
               <div className="line-text">
-                <h4>Hello, I'm</h4>
+                <h4>{introText}</h4>
               </div>
-              <Glitch text="Nastya A." />
+              <Glitch text={name} />
               <Typewriter
                 options={{
-                  strings: [
-                    'IT Recruiter',
-                    'Photorapher',
-                    'UI/UX Designer',
-                  ],
+                  strings: positions,
                   autoStart: true,
                   loop: true,
                 }}
               />
-              <button className="hover-button">
-                  <span>Download CV</span>
+              <button className="hover-button"
+                      onClick={() => {
+                        if(cvURL) window.open(cvURL, '_blank');
+                      }}
+              >
+                <span>Download CV</span>
               </button>
             </div>
             {this.icons()}
           </Col>
           <Col md={6} className="img">
             <img
-              src={this.props.mainImg.childImageSharp.fluid.src}
+              src={personImg ? 'https:' + personImg : this.props.mainImg.childImageSharp.fluid.src}
               alt="person"
             />
           </Col>
@@ -56,9 +70,8 @@ class Hero extends React.Component {
       return (
         <img
           src={value.node.childImageSharp.fluid.src}
-          className={`animated fadeIn move-${
-            Math.floor(Math.random() * 10) % 2 === 0 ? 'up' : 'down'
-          } float-image`}
+          className={`animated fadeIn move-${Math.floor(Math.random() * 10) % 2 === 0 ? 'up' : 'down'
+            } float-image`}
           style={{
             left: `${index * 10}%`,
             bottom: `${Math.random() *
@@ -100,8 +113,27 @@ export default props => (
             }
           }
         }
+
+        contentfulHomeImage {
+          photo {
+            file {
+              url
+            }
+          }
+        }
+        contentfulHomeInfo {
+          introText
+          name
+          positions
+        }
+        contentfulAsset {
+          file {
+            url
+          }
+        }
+        
       }
     `}
-    render={({ icons, Img }) => <Hero icons={icons} mainImg={Img} {...props} />}
+    render={(data) => <Hero icons={data.icons} mainImg={data.Img} {...props} {...data} />}
   />
 )
