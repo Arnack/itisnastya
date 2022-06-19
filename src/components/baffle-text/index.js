@@ -54,7 +54,7 @@ class Baffle_Text extends React.Component {
             return (
                 <Baffle
                     speed={50}
-                    characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*"
+                    characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&* "
                     obfuscate={this.state.obfuscate}
                     update={true}
                     revealDuration={revealDuration}

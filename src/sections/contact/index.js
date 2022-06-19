@@ -79,7 +79,7 @@ class Contact extends React.Component {
                     </Col>
                     <Col md={5} className="contact-me">
                         {/* {this.map(location)} */}
-                        <AnimationContainer delay={0} animation="fadeInUp fast">
+                        <AnimationContainer delay={300} animation="fadeInUp fast">
                             <ContactMe />
                         </AnimationContainer>
                     </Col>
@@ -91,7 +91,7 @@ class Contact extends React.Component {
     form(title, email, buttonText) {
         if (this.state.show || this.context.height === "auto") {
             return (
-                <AnimationContainer delay={0} animation="fadeInUp fast">
+                <AnimationContainer delay={400} animation="fadeInUp fast">
                 <div className="form-container">
                     <div className="line-text">
                         <h4>{title}</h4>

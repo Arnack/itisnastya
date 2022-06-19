@@ -19,6 +19,7 @@ class Layout extends React.Component {
       'home',
       'about',
       'services',
+      'vacansies',
       'portfolio',
       'testimonials',
       'contact',

@@ -1,0 +1,92 @@
+.positions {
+    background-color: #000;
+    @media (max-width:991px) {
+        margin-top: 40px;
+    }
+    .row {
+        display: flex;
+        flex-wrap: inherit;
+        overflow: hidden;
+        min-height: 100%;
+        padding: 0;
+        @media (max-width:991px) {
+            display: block;
+            flex-wrap: wrap;
+        }
+        .side {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            background-color: #251170;
+            .baffle_text {
+                transform: rotate(-90deg);
+                text-align: center;
+                span {
+                    color: #fff;
+                    font-family: Poppins;
+                    font-size: 60px;
+                    margin: 10px 0 20px 0;
+                    line-height: 60px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 10px;
+                }
+            }
+            @media (max-width:991px) {
+                height: 100px;
+                width: 100%;
+                .baffle_text {
+                    transform: inherit;
+                    span {
+                        font-size: 40px;
+                        line-height: 40px;
+                    }
+                }
+            }
+        }
+        .recent-works {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 5%;
+            background-color: #121629;
+
+            .position_container {
+                margin-top: 20px;
+
+                .position_item {
+                    margin: 10px;
+                    display: inline-block;
+                    padding: 0 5px;
+                    position: relative;
+                    border: 1px solid #b8c1ec;
+                    padding: 20px;
+                    color: #b8c1ec;
+                    cursor: pointer;
+                    transition: .2s;
+
+                    &:hover {
+                        background-color: #161b33;
+                    }
+
+                    h3 {
+                        color: #fffffe;
+                        // color: rgba(20, 225, 200, 1);
+                    }
+
+                    .inner-separator {
+                        font-size: 18px;
+                        font-weight: 400;
+                        line-height: 24px;
+                        letter-spacing: 4px;
+                        font-style: normal;
+                        text-decoration: none;
+                        text-transform: none;
+                        color: #0b67dc;
+                    }
+                }
+            }
+        }
+    }
+}

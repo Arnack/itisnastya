@@ -10,6 +10,7 @@ import Services from 'sections/services'
 import Testimonials from 'sections/testimonials'
 import Contact from 'sections/contact'
 import { Toaster } from 'react-hot-toast'
+import Vacansies from '../sections/vacansies'
 
 class HomePage extends React.Component {
 
@@ -26,6 +27,7 @@ class HomePage extends React.Component {
             <Hero id="home" />
             <About id="about" />
             <Services id="services" />
+            <Vacansies id="vacansies" />
             <Portfolio id="portfolio" />
             <Testimonials id="testimonials" />
             <Contact id="contact" />

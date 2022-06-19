@@ -115,6 +115,45 @@ class Testimonials extends React.Component {
   }
   testimonial_items() {
     if (this.state.show || this.context.height === 'auto') {
+
+      
+    const { reviews } = this.props;
+
+      if (reviews && reviews.length > 0) {
+
+        return reviews.map(({ node }, index) => {
+          return (
+            <div className="testimonial" key={index}>
+            <h2>{node.heading}</h2>
+            <div
+              className="testimonial_content"
+              dangerouslySetInnerHTML={{
+                __html: '<p>' + node.mainText.mainText + '</p>',
+              }}
+            />
+            <div className="client_container">
+              <div className="client">
+                <img
+                  src={
+                    node.personPicture.file.url
+                  }
+                  alt={"client"}
+                />
+                <div className="info">
+                  <p className="name">{node.personName}</p>
+                  <p className="profession">
+                    {node.position}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          )
+
+        });
+
+      }
+
       return this.props.testimonials.edges.map((value, index) => {
         return (
           <div className="testimonial" key={index}>
@@ -199,10 +238,28 @@ export default props => (
                   }
                 }
               }
+
+              allContentfulTestimonial {
+                edges {
+                  node {
+                    personName
+                personPicture {
+                  file {
+                    url
+                  }
+                }
+                position
+                heading
+                mainText {
+                  mainText
+                }
+                  }
+                }
+              }
           }
         `}
-    render={({ clients, testimonials }) => (
-      <Testimonials clients={clients} testimonials={testimonials} {...props} />
+    render={({ clients, testimonials, allContentfulTestimonial }) => (
+      <Testimonials clients={clients} testimonials={testimonials} reviews={allContentfulTestimonial.edges} {...props} />
     )}
   />
 )
