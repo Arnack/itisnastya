@@ -80,7 +80,7 @@ class Vacancies extends React.Component {
     return (
       <span key={idx}>
         {idx === 0 ? '' : ', '}
-        <span style={{color}}>{tech}</span>
+        <span className='tech-tag' style={{color}}>{tech}</span>
       </span>
     )
   }

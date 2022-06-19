@@ -73,6 +73,23 @@
                     h3 {
                         color: #fffffe;
                         // color: rgba(20, 225, 200, 1);
+                        transition: .2s;
+                        &:hover {
+                            // color: rgba(169, 222, 216, 0.95);
+                            opacity: .8;
+                            // color: rgba(2, 119, 255, 0.8);
+                        }
+                    }
+
+                    .tech-tag {
+                        // padding: 4px;
+                        transition: .2s;
+                        &:hover {
+                            // text-decoration: underline;
+                            // background-color: #242c5290;
+                            // pointer-events: none;
+                            opacity: .68;
+                        }
                     }
 
                     .inner-separator {
