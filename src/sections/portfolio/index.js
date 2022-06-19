@@ -89,10 +89,10 @@ class Portfolio extends React.Component {
       const { items } = this.state
       return items.map((value, index) => {
         if (
-          value.content.frontmatter.category === this.state.category ||
+          value.content.category === this.state.category ||
           !this.state.category
         ) {
-          if (value.content.frontmatter.image) {
+          if (value.content.image.file) {
             return (
               <div
                 className="portfolio_item"
@@ -113,24 +113,25 @@ class Portfolio extends React.Component {
                 <AnimationContainer delay={200} animation="fadeIn" key={index}>
                   <img
                     src={
-                      value.content.frontmatter.image.childImageSharp.fluid.src
+                      value.content.image.file.url
                     }
-                    alt={value.content.frontmatter.title}
+                    alt={value.content.title}
                     style={{
-                      maxHeight: `${this.context.height *
+                      height: `${this.context.height *
                         (this.state.col >= 3
                           ? 0.35
                           : this.getItemCount(
-                              value.content.frontmatter.category
+                              value.content.category
                             ) === 4
                           ? 0.36
                           : 1)}px`,
+                          maxHeight: `50vh`,
                     }}
                   />
                   <Tilt className="Tilt" options={{ scale: 1, max: 50 }}>
                     <div className="overlay">
                       <span className="title">
-                        {value.content.frontmatter.title}
+                        {value.content.title}
                       </span>
                     </div>
                   </Tilt>
@@ -147,7 +148,7 @@ class Portfolio extends React.Component {
   getItemCount(category) {
     let total = 0
     this.state.items.forEach(v => {
-      if (v.content.frontmatter.category === category || !category) total++
+      if (v.content.category === category || !category) total++
     })
     return total
   }
@@ -157,7 +158,7 @@ class Portfolio extends React.Component {
     this.setState({ items: [] })
     let total = 0
     items.forEach(v => {
-      if (v.content.frontmatter.category === category || !category) total++
+      if (v.content.category === category || !category) total++
     })
     let col = total > 6 ? 4 : total > 4 ? 3 : total > 3 ? 2 : total > 1 ? 2 : 1
 
@@ -171,7 +172,7 @@ class Portfolio extends React.Component {
     const { items } = this.props
     let categories = []
     for (var v of items) {
-      categories.push(v.content.frontmatter.category)
+      categories.push(v.content.category)
     }
     categories = [...new Set(categories)]
     return categories.map((value, index) => {
@@ -194,20 +195,19 @@ export default props => (
   <StaticQuery
     query={graphql`
           query {
-            items: allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/(portfolio)/"}}, sort: {fields: [frontmatter___id], order: ASC}, 
-            # The layout is built for 6 portfolio items #
-            limit: 6) {
+            allContentfulPorfolioItem(limit: 6) {
               edges {
                 content: node {
-                  html
-                  frontmatter {
-                    id
-                    title
-                    category
-                    image {
-                      childImageSharp {
-                        fluid(maxWidth: 2000, maxHeight: 2000) {
-                          src
+                  category
+                  id
+                  title
+                  image {
+                    file {
+                      url
+                      details {
+                        image {
+                          height
+                          width
                         }
                       }
                     }
@@ -215,8 +215,10 @@ export default props => (
                 }
               }
             }
-          }      
+          }
+          
+        
         `}
-    render={({ items }) => <Portfolio items={items.edges} {...props} />}
+    render={({ items, allContentfulPorfolioItem }) => <Portfolio items={allContentfulPorfolioItem.edges} {...props} />}
   />
 )
