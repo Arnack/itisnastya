@@ -126,6 +126,7 @@ class Portfolio extends React.Component {
                           ? 0.36
                           : 1)}px`,
                           maxHeight: `50vh`,
+                          objectPosition: `${value.content.category==='Waiting for Food' ? 'top' : 'center'}`,
                     }}
                   />
                   <Tilt className="Tilt" options={{ scale: 1, max: 50 }}>
