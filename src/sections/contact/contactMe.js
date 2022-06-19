@@ -29,7 +29,7 @@ const ContactMe = (props) => {
             </div>
 
             <div className='contactInfo__item'>
-                <FontAwesomeIcon className='contact-icon' icon={faEnvelope} /> <span className="contact-label">{email}</span>
+                <FontAwesomeIcon className='contact-icon' icon={faEnvelope} /> <span className="contact-label" style={{position: 'relative', zIndex: 48}}>{email}</span>
             </div>
 
 
