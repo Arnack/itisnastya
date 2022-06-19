@@ -15,7 +15,6 @@ const ContactMe = (props) => {
     // const { buttonText, email, formTitle, location } = props.contentfulContactSection;
     const { facebook, instagram, linkedin, twitter } = props.contentfulSocialMedias;
     const { telegram, phone, subtitle, title, email } = props.contentfulContactInformation;
-    console.log(props);
     return <div>
         <h4>{title}</h4>
         <p className='subtitle'>{subtitle}</p>

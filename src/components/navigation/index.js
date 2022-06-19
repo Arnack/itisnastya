@@ -36,7 +36,6 @@ class Navigation extends React.Component {
     }
 
     navScroll(id, v) {
-        
         this.setState({show: false})
         const el = document.getElementById(id)
         scrollToElement(el, {

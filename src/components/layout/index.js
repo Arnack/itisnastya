@@ -19,7 +19,7 @@ class Layout extends React.Component {
       'home',
       'about',
       'services',
-      'vacansies',
+      'vacancies',
       'portfolio',
       'testimonials',
       'contact',
@@ -67,6 +67,9 @@ class Layout extends React.Component {
   }
 
   wheel(e) {
+    try {
+
+   
     if (!this.scrolling && !this.state.mobile) {
       this.scrolling = true
       if (e.deltaY < 0) {
@@ -82,6 +85,7 @@ class Layout extends React.Component {
           this.section_id = (this.section_id + 1) % this.sections.length
       }
       const el = document.getElementById(this.sections[this.section_id])
+
       scrollToElement(el, {
         offset: 0,
         ease: 'in-out-expo',
@@ -90,6 +94,9 @@ class Layout extends React.Component {
         this.scrolling = false
       })
     }
+  } catch (error) {
+    console.error(error);
+  }
   }
 
   render() {

@@ -64,7 +64,7 @@ class Contact extends React.Component {
 
 
     render() {
-        const {buttonText, email, formTitle, location} = this.props.contentfulContactSection;
+        const {buttonText, email, formTitle} = this.props.contentfulContactSection;
         return (
             <section id={`${this.props.id}`} className="contact" style={{height: this.context.height}}>
                 
