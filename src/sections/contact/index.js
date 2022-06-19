@@ -7,6 +7,8 @@ import ThemeContext from '../../context'
 import toast from 'react-hot-toast';
 import { graphql, StaticQuery } from 'gatsby'
 import ContactMe from './contactMe'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faKeyboard, faHeartbeat } from '@fortawesome/free-solid-svg-icons'
 
 class Contact extends React.Component {
     constructor(props) {
@@ -17,7 +19,8 @@ class Contact extends React.Component {
             phone: "",
             message: "",
             error: false,
-            show: false
+            show: false,
+            shortCreds: true
         }
         this.show = this.show.bind(this)
     }
@@ -25,12 +28,12 @@ class Contact extends React.Component {
 
 
     show() {
-      this.setState({show : true})
+        this.setState({ show: true })
     }
 
     check(val) {
         if (this.state.error && val === "") {
-                return false
+            return false
         } else {
             return true
         }
@@ -39,11 +42,11 @@ class Contact extends React.Component {
     submit(email) {
         const sendEmail = () => {
             window.Email.send({
-            SecureToken: "f096f0a5-3df8-4b2a-931d-37010b1aae16",
-            To : email,
-            From : 'info@itisnastya.art',
-            Subject : `Message from  ${this.state.name} via contact form`,
-            Body : `Name: ${this.state.name} <br/>
+                SecureToken: "f096f0a5-3df8-4b2a-931d-37010b1aae16",
+                To: email,
+                From: 'info@itisnastya.art',
+                Subject: `Message from  ${this.state.name} via contact form`,
+                Body: `Name: ${this.state.name} <br/>
              Email: ${this.state.email}  <br/> 
              Phone: ${this.state.phone} <br/>
              Message: ${this.state.message}`
@@ -55,19 +58,19 @@ class Contact extends React.Component {
         }
 
         if (this.state.name === "" || this.state.email === "" || this.state.message === "") {
-            this.setState({error: true})
+            this.setState({ error: true })
         } else {
             sendEmail();
-            this.setState({error: false})
+            this.setState({ error: false })
         }
     }
 
 
     render() {
-        const {buttonText, email, formTitle} = this.props.contentfulContactSection;
+        const { buttonText, email, formTitle } = this.props.contentfulContactSection;
         return (
-            <section id={`${this.props.id}`} className="contact" style={{height: this.context.height}}>
-                
+            <section id={`${this.props.id}`} className="contact" style={{ height: this.context.height }}>
+
                 <Row>
                     <Col md={2} className="side">
                         <h2>
@@ -82,6 +85,19 @@ class Contact extends React.Component {
                         <AnimationContainer delay={300} animation="fadeInUp fast">
                             <ContactMe />
                         </AnimationContainer>
+
+                        <div className='creator'>
+                            <span
+                                onClick={() => this.setState({ shortCreds: !this.state.shortCreds })}
+                            >
+                                {this.state.shortCreds ?
+                                        'Designed by' :
+                                        <span>
+                                            Created with <FontAwesomeIcon icon={faKeyboard} /> & <FontAwesomeIcon icon={faHeartbeat} /> by 
+                                        </span>}
+                            </span>
+                            <a href='https://arnack.github.io' target="_blank"> Greg</a>
+                        </div>
                     </Col>
                 </Row>
             </section>
@@ -92,38 +108,38 @@ class Contact extends React.Component {
         if (this.state.show || this.context.height === "auto") {
             return (
                 <AnimationContainer delay={400} animation="fadeInUp fast">
-                <div className="form-container">
-                    <div className="line-text">
-                        <h4>{title}</h4>
-                        <AnimationContainer delay={50} animation="fadeInUp fast">
-                            <div className="form-group">
-                                <input type="text" className={`name ${this.check(this.state.name) ? "" : "error"}`} placeholder="Name" onChange={e => this.setState({name: e.target.value})} />
-                            </div>
-                        </AnimationContainer>
-                        <AnimationContainer delay={100} animation="fadeInUp fast">
-                        <div className="form-group">
-                            <input type="text" className={`email ${this.check(this.state.email) ? "" : "error"}`} placeholder="Email" onChange={e => this.setState({email: e.target.value})} />
+                    <div className="form-container">
+                        <div className="line-text">
+                            <h4>{title}</h4>
+                            <AnimationContainer delay={50} animation="fadeInUp fast">
+                                <div className="form-group">
+                                    <input type="text" className={`name ${this.check(this.state.name) ? "" : "error"}`} placeholder="Name" onChange={e => this.setState({ name: e.target.value })} />
+                                </div>
+                            </AnimationContainer>
+                            <AnimationContainer delay={100} animation="fadeInUp fast">
+                                <div className="form-group">
+                                    <input type="text" className={`email ${this.check(this.state.email) ? "" : "error"}`} placeholder="Email" onChange={e => this.setState({ email: e.target.value })} />
+                                </div>
+                            </AnimationContainer>
+                            <AnimationContainer delay={150} animation="fadeInUp fast">
+                                <div className="form-group">
+                                    <input type="text" className="phone" placeholder="Phone" onChange={e => this.setState({ phone: e.target.value })} />
+                                </div>
+                            </AnimationContainer>
+                            <AnimationContainer delay={200} animation="fadeInUp fast">
+                                <div className="form-group">
+                                    <textarea className={`message ${this.check(this.state.message) ? "" : "error"}`} placeholder="Message" onChange={e => this.setState({ message: e.target.value })}></textarea>
+                                </div>
+                            </AnimationContainer>
+                            <AnimationContainer delay={250} animation="fadeInUp fast">
+                                <div className="submit">
+                                    <button className={`hover-button ${this.state.error ? "error" : ""}`} onClick={() => this.submit(email)}>
+                                        <span>{buttonText}</span>
+                                    </button>
+                                </div>
+                            </AnimationContainer>
                         </div>
-                        </AnimationContainer>
-                        <AnimationContainer delay={150} animation="fadeInUp fast">
-                            <div className="form-group">
-                                <input type="text" className="phone" placeholder="Phone" onChange={e => this.setState({phone: e.target.value})} />
-                            </div>
-                        </AnimationContainer>
-                        <AnimationContainer delay={200} animation="fadeInUp fast">
-                        <div className="form-group">
-                            <textarea className={`message ${this.check(this.state.message) ? "" : "error"}`} placeholder="Message" onChange={e => this.setState({message: e.target.value})}></textarea>
-                        </div>
-                        </AnimationContainer>
-                        <AnimationContainer delay={250} animation="fadeInUp fast">
-                        <div className="submit">
-                            <button className={`hover-button ${this.state.error ? "error" : ""}`} onClick={() => this.submit(email)}>
-                                <span>{buttonText}</span>
-                            </button>
-                        </div>
-                        </AnimationContainer>
                     </div>
-                </div>
                 </AnimationContainer>
             )
         }
@@ -168,8 +184,8 @@ export default props => (
                   }
               }
         }`}
-            render={data => <Contact {...data} {...props} />}
-            />
+        render={data => <Contact {...data} {...props} />}
+    />
 )
 
 
